@@ -46,6 +46,7 @@
 .MySelect{
   width: 1000px;
   justify-content: flex-end;
+    height: 15px;
 }
 
 .List{
@@ -81,11 +82,12 @@
 }
 .ButtonList{
     margin-top: 0px;
-margin-left: 1100px;
+margin-left: 950px;
     padding-top: 0px;
 
 }
 .Chart{
     margin-bottom: 0px;
     padding-bottom: 0px;
+    margin-left: 400px;
 }
