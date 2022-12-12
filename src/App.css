@@ -34,17 +34,19 @@
   margin-right: auto;
     margin-top: 0px;
 }
-.background{
-  background-image: url("https://wallpapercrafter.com/sizes/2048x1152/87069-landscape-mountain-monochrome-black-and-white-4k-5k.jpg");
-  height: 100vh;
+.background{  background-image: url("https://wallpapercrafter.com/sizes/2048x1152/87069-landscape-mountain-monochrome-black-and-white-4k-5k.jpg");
+    height: 100vh;
+
   font-size:50px;
   background-repeat:no-repeat;
     background-attachment: fixed;
     position: static;
+    background-size: cover;
+
 }
 
 .MySelect{
-  width: 1000px;
+    padding-left: 400px;
   justify-content: flex-end;
     height: 15px;
 }
@@ -82,9 +84,13 @@
 }
 .ButtonList{
     margin-top: 0px;
-margin-left: 950px;
+margin-left: 1000px;
     padding-top: 0px;
 
+}
+.time_select{
+    margin-left: 1270px;
+    margin-bottom: 10px;
 }
 .Chart{
     margin-bottom: 0px;

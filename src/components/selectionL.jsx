@@ -9,12 +9,12 @@ const SelectionL = (props) => {
             styles={{
                 control: (baseStyles, state) => ({
                     ...baseStyles,
-                    borderColor: state.isFocused ? '' : '',
+                    borderColor: state.isFocused ? 'red' : 'blue',
                     background: 'darkgray',
                     color: 'black',
-
                 }),
-            }}/>
+            }}
+        />
     );
 };
 

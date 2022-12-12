@@ -2,8 +2,6 @@ import './App.css';
 import React from 'react';
 import './index.css';
 import Select from "react-select";
-import neon from "neon-colors"
-
 import {
     LineChart,
     Line,
@@ -22,87 +20,113 @@ const options = [
     { value: 'wierden', label: 'Wierden' },
     { value: 'gronau', label: 'Gronau' }
 ]
+const forecast = [
+    {value: 'hour', label: 'hour'},
+    {value: 'days', label: 'days'},
+    {value: 'week', label: 'week'}
+]
 
 const MyComponent = () => (
     <Select
         options={options}
+
+        // onChange ={}
         // defaultInputValue={"select city"}
             styles={{
                 control: (baseStyles, state) => ({
                     ...baseStyles,
-                    borderColor: state.isFocused ? 'black' : 'black',
+                    borderColor: state.isFocused ? 'whitesmoke' : 'black',
+                    height: '5px',
+                    fontSize: '25px',
+                    width: '250px',
                     background: 'darkgray',
                     color: 'black',
-
                 }),
             }}/>
+)
+const MyyComponent = () => (
+    <Select
+        options={forecast}
+
+        // onChange ={}
+        // defaultInputValue={"hour"}
+        styles={{
+            control: (baseStyles, state) => ({
+                ...baseStyles,
+                borderColor: state.isFocused ? 'whitesmoke' : 'black',
+                height: '5px',
+                fontSize: '20px',
+                width: '150px',
+                background: 'darkgray',
+                color: 'black',
+            }),
+        }}/>
 )
 
 const data = [
     {
-        "name": "12:00",
-        "Enschede": 4000,
-        "Gronau": 20,
-        "amt": 2400
+        "Xtime": "12:00",
+        "Temperature": 5,
+        "Light": 20,
+        "Pressure": 2400
     },
     {
-        "name": "14:00",
-        "Enschede": 3000,
-        "Gronau": 40,
-        "amt": 2210
+        "Xtime": "14:00",
+        "Temperature": 6,
+        "Light": 40,
+        "Pressure": 2210,
+        "Humidity": 100
     },
     {
-        "name": "16:00",
-        "Enshede": 2000,
-        "Gronau": 60,
-        "amt": 2290
+        "Xtime": "16:00",
+        "Temperature": 7,
+        "Light": 60,
+        "Pressure": 2290,
+        "Humidity": 100
+
     },
     {
-        "name": "18:00",
-        "Enshede": 2780,
-        "Gronau": 55,
-        "amt": 2000
+        "Xtime": "18:00",
+        "Temperature": 4,
+        "Light": 55,
+        "Pressure": 2000,
+        "Humidity": 100
+
     },
     {
-        "name": "20:00",
-        "Enshede": 1890,
-        "Gronau": 60,
-        "amt": 2181
+        "Xtime": "20:00",
+        "Temperature": 4,
+        "Light": 60,
+        "Pressure": 2181,
+        "Humidity": 100
+
     },
     {
-        "name": "22:00",
-        "Enschede": 2390,
-        "Gronau": 65,
-        "amt": 2500
+        "Xtime": "22:00",
+        "Temperature": 3,
+        "Light": 65,
+        "Pressure": 2500,
+        "Humidity": 100
+
     },
     {
-        "name": "24:00",
-        "Enshede": 3490,
-        "Gronau": 75,
-        "amt": 2100
+        "Xtime": "24:00",
+        "Temperature": 3,
+        "Light": 75,
+        "Pressure": 2100,
+        "Humidity": 100
+
     }
 ]
 
-const meta = {
-    description: 'I am a description, and I can create multiple tags',
-    meta: {
-        charset: 'utf-8',
-        content:'width=device-width, initial-scale=1, shrink-to-fit=no',
-        name: {
-            keywords: 'react,meta,document,html,tags'
-        }
-    }}
 
-
+// https://pastebin.com/GWSUYcbZ
 function App() {
-
+    let state = "Enschede"
   return (
 
       <div className="background">
-          <helmet>
-          <title>Weather</title>
-          <meta{...meta}/>
-          </helmet>
+
         <div className={'header'}>
           WEATHER
           <br/>
@@ -114,12 +138,16 @@ function App() {
           <div className="Line">
           <hr/>
         </div>
+          <div className={'time_select'}>
+              <MyyComponent/>
+          </div>
           <div className="Chart">
-              <ResponsiveContainer width={1000} height={350} >
+              <ResponsiveContainer width='100%' height={400} >
           <AreaChart  data={data}
+                      padding-left={500}
                       margin={{
                           top: 5,
-                          right: 50,
+                          right: 500,
                           left: 20,
                           bottom: 10,
                       }}>
@@ -131,8 +159,8 @@ function App() {
                   </linearGradient>
               </defs>
               <CartesianGrid opacity={0.2}/>
-              <Area dataKey={'Gronau'} stroke={'#82ca9d'} fill="url(#color)"/>
-              <XAxis dataKey="name"
+              <Area dataKey={'Temperature'} stroke={'#82ca9d'} fill="url(#color)"/>
+              <XAxis dataKey="Xtime"
                      tick={{stroke: 'white',fontStyle: "Manjari Thin", fontWeight: "normal"}}
                      tickSize={15}
                      axisLine={false}
@@ -141,23 +169,22 @@ function App() {
                      fontSize={20}
               />
 
-              <YAxis dataKey={'Gronau'}
+              <YAxis dataKey={'Temperature'}
                      tick={{stroke: 'white'}}
                      axisLine={false}
                      tickLine={false}
                      fontSize={20}
-                     // style={'color-white'}
+                     tickCount={6}
               />
-              <Tooltip wrapperStyle={{ width: 150, backgroundColor: '',fontSize: 20,fontFamily:"Manjari Thin" }} />
-              <Line type="monotone" dataKey="Humidity" stroke="#8884d8" />
-              <Line type="monotone" dataKey="Gronau" stroke="#82ca9d" />
+              <Tooltip wrapperStyle={{ width: 200, backgroundColor: '',fontSize: 20,fontFamily:"Manjari Thin" }} />
+              <Line type="monotone" dataKey="Temperature" stroke="#82ca9d" />
           </AreaChart>
               </ResponsiveContainer>
           </div>
 
           <div className="ButtonList">
             <div className="Buttons">
-                <button className="button" role="button">Temperature</button>
+                <button className="button" role="button" >Temperature</button>
                 <button className="button" role="button">Humidity</button>
                 <button className="button" role="button">Pressure</button>
                 <button className="button" role="button">Light</button>
