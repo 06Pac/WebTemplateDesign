@@ -120,7 +120,6 @@ const data = [
 ]
 
 
-// https://pastebin.com/GWSUYcbZ
 function App() {
     let state = "Enschede"
   return (
